@@ -1,0 +1,50 @@
+﻿@model EvManager.Web.Models.PlanRuta
+
+<h1>Crear Plan de Ruta</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="VehiculoId" class="control-label"></label>
+        <select asp-for="VehiculoId" class="form-control" required>
+            <option value="">Seleccione un vehículo</option>
+            @foreach (var vehiculo in ViewBag.Vehiculos)
+            {
+                <option value="@vehiculo.Id">@vehiculo.Marca @vehiculo.Modelo (Matrícula: @vehiculo.Matricula)</option>
+            }
+        </select>
+        <span asp-validation-for="VehiculoId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UbicacionInicio" class="control-label"></label>
+        <input asp-for="UbicacionInicio" class="form-control" required />
+        <span asp-validation-for="UbicacionInicio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="UbicacionFin" class="control-label"></label>
+        <input asp-for="UbicacionFin" class="form-control" required />
+        <span asp-validation-for="UbicacionFin" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DistanciaEstimada" class="control-label"></label>
+        <input asp-for="DistanciaEstimada" class="form-control" type="number" step="0.1" required min="0.1" />
+        <span asp-validation-for="DistanciaEstimada" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IdsEstacionesCarga" class="control-label">Estaciones de Carga</label>
+        <select multiple name="idsEstacionesCarga" class="form-control">
+            @foreach (var estacion in ViewBag.EstacionesCarga)
+            {
+                <option value="@estacion.Id">@estacion.Nombre (@estacion.Ubicacion)</option>
+            }
+        </select>
+        <span asp-validation-for="IdsEstacionesCarga" class="text-danger"></span>
+    </div>
+    <div class="form-group text-center">
+        <input type="submit" value="Crear" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-secondary ml-2">Volver a la Lista</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

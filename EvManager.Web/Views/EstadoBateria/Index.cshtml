@@ -1,0 +1,37 @@
+﻿@model IEnumerable<EvManager.Web.Models.EstadoBateria>
+
+@{
+    ViewData["Title"] = "Estados de Batería";
+}
+
+<h1>Estados de Batería</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Estado</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID Vehículo</th>
+            <th>Nivel de Carga (%)</th>
+            <th>Última Actualización</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var estado in Model)
+        {
+            <tr>
+                <td>@estado.VehiculoId</td>
+                <td>@estado.NivelCarga</td>
+                <td>@estado.UltimaActualizacion.ToString("g")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@estado.Id" class="btn btn-info">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@estado.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@estado.Id" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

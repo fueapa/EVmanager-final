@@ -1,0 +1,256 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para tema oscuro */
+}
+
+.container {
+    max-width: 800px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out; /* Animación de entrada */
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    background-color: #2c3e50;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+}
+
+.navbar-brand, .nav-link {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: #3498db !important;
+    }
+
+    .nav-link i {
+        margin-right: 5px;
+    }
+
+/* Interruptor de tema */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+    .theme-toggle button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #fff;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+.dark-theme .theme-toggle button {
+    color: #e0e0e0;
+}
+
+/* Estilos para formularios */
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        outline: none;
+    }
+
+.text-danger {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Estilos para botones */
+.btn-primary {
+    background-color: #3498db;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+    }
+
+    .btn-primary i {
+        margin-right: 5px;
+    }
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary i {
+        margin-right: 5px;
+    }
+
+/* Estilos para enlaces de "Volver a la Lista" */
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    a:hover {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+
+/* Estilos para listas (Index.cshtml) */
+.table {
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+    .table th {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 15px;
+    }
+
+    .table td {
+        padding: 15px;
+        vertical-align: middle;
+    }
+
+    .table tr:hover {
+        background-color: #f8f9fa;
+        transition: background-color 0.3s ease;
+    }
+
+    .table .btn {
+        margin-right: 5px;
+    }
+
+/* Responsividad */
+@media (max-width: 576px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .form-control, .btn-primary, .btn-secondary {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+    }
+
+        .theme-toggle button {
+            font-size: 1.2rem;
+        }
+}
+
+/* Tema oscuro */
+body.dark-theme {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+.dark-theme .container {
+    background-color: #2c2c2c;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme h1, .dark-theme .form-group label {
+    color: #e0e0e0;
+}
+
+.dark-theme .navbar {
+    background-color: #1c2526;
+}
+
+.dark-theme .form-control {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+    color: #e0e0e0;
+}
+
+    .dark-theme .form-control:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+
+.dark-theme .table {
+    background-color: #2c2c2c;
+}
+
+    .dark-theme .table th {
+        background-color: #1c2526;
+    }
+
+    .dark-theme .table tr:hover {
+        background-color: #3a3a3a;
+    }
+
+.dark-theme a {
+    color: #66b0ff;
+}
+
+    .dark-theme a:hover {
+        color: #4a90e2;
+    }

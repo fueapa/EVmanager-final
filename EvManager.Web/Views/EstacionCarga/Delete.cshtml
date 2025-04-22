@@ -1,0 +1,29 @@
+﻿@model EvManager.Web.Models.EstacionCarga
+
+@{
+    ViewData["Title"] = "Eliminar Estación de Carga";
+}
+
+<h1>Eliminar Estación de Carga</h1>
+
+<h3>¿Estás seguro de que quieres eliminar esta estación?</h3>
+<div>
+    <h4>Estación de Carga</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Nombre</dt>
+        <dd class="col-sm-10">@Model.Nombre</dd>
+        <dt class="col-sm-2">Ubicación</dt>
+        <dd class="col-sm-10">@Model.Ubicacion</dd>
+        <dt class="col-sm-2">Puertos Disponibles</dt>
+        <dd class="col-sm-10">@Model.PuertosDisponibles</dd>
+        <dt class="col-sm-2">Capacidad de Potencia (kW)</dt>
+        <dd class="col-sm-10">@Model.CapacidadPotencia</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+    </form>
+</div>

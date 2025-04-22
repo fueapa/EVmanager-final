@@ -1,0 +1,28 @@
+﻿@model EvManager.Web.Models.PlanRuta
+
+@{
+    ViewData["Title"] = "Detalles del Plan de Ruta";
+}
+
+<h1>Detalles del Plan de Ruta</h1>
+
+<div>
+    <h4>Plan de Ruta</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">ID Vehículo</dt>
+        <dd class="col-sm-10">@Model.VehiculoId</dd>
+        <dt class="col-sm-2">Ubicación Inicio</dt>
+        <dd class="col-sm-10">@Model.UbicacionInicio</dd>
+        <dt class="col-sm-2">Ubicación Fin</dt>
+        <dd class="col-sm-10">@Model.UbicacionFin</dd>
+        <dt class="col-sm-2">Distancia Estimada (km)</dt>
+        <dd class="col-sm-10">@Model.DistanciaEstimada</dd>
+        <dt class="col-sm-2">Estaciones de Carga</dt>
+        <dd class="col-sm-10">@(Model.IdsEstacionesCarga != null ? string.Join(", ", Model.IdsEstacionesCarga) : "Ninguna")</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</div>

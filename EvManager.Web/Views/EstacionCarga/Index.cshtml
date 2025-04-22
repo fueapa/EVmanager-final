@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EvManager.Web.Models.EstacionCarga>
+
+@{
+    ViewData["Title"] = "Estaciones de Carga";
+}
+
+<h1>Estaciones de Carga</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nueva Estación</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Ubicación</th>
+            <th>Puertos Disponibles</th>
+            <th>Capacidad de Potencia (kW)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var estacion in Model)
+        {
+            <tr>
+                <td>@estacion.Nombre</td>
+                <td>@estacion.Ubicacion</td>
+                <td>@estacion.PuertosDisponibles</td>
+                <td>@estacion.CapacidadPotencia</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@estacion.Id" class="btn btn-info">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@estacion.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@estacion.Id" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

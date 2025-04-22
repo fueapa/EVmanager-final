@@ -1,0 +1,41 @@
+﻿@model IEnumerable<EvManager.Web.Models.PlanRuta>
+
+@{
+    ViewData["Title"] = "Planes de Ruta";
+}
+
+<h1>Planes de Ruta</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Plan</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID Vehículo</th>
+            <th>Ubicación Inicio</th>
+            <th>Ubicación Fin</th>
+            <th>Distancia Estimada (km)</th>
+            <th>Estaciones de Carga</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var plan in Model)
+        {
+            <tr>
+                <td>@plan.VehiculoId</td>
+                <td>@plan.UbicacionInicio</td>
+                <td>@plan.UbicacionFin</td>
+                <td>@plan.DistanciaEstimada</td>
+                <td>@(plan.IdsEstacionesCarga != null ? string.Join(", ", plan.IdsEstacionesCarga) : "Ninguna")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@plan.Id" class="btn btn-info">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@plan.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@plan.Id" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

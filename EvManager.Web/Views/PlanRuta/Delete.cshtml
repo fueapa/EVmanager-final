@@ -1,0 +1,31 @@
+﻿@model EvManager.Web.Models.PlanRuta
+
+@{
+    ViewData["Title"] = "Eliminar Plan de Ruta";
+}
+
+<h1>Eliminar Plan de Ruta</h1>
+
+<h3>¿Estás seguro de que quieres eliminar este plan?</h3>
+<div>
+    <h4>Plan de Ruta</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">ID Vehículo</dt>
+        <dd class="col-sm-10">@Model.VehiculoId</dd>
+        <dt class="col-sm-2">Ubicación Inicio</dt>
+        <dd class="col-sm-10">@Model.UbicacionInicio</dd>
+        <dt class="col-sm-2">Ubicación Fin</dt>
+        <dd class="col-sm-10">@Model.UbicacionFin</dd>
+        <dt class="col-sm-2">Distancia Estimada (km)</dt>
+        <dd class="col-sm-10">@Model.DistanciaEstimada</dd>
+        <dt class="col-sm-2">Estaciones de Carga</dt>
+        <dd class="col-sm-10">@(Model.IdsEstacionesCarga != null ? string.Join(", ", Model.IdsEstacionesCarga) : "Ninguna")</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+    </form>
+</div>
