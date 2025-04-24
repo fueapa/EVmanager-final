@@ -13,14 +13,14 @@ public class EstacionCargaController : Controller
         _httpClient = httpClientFactory.CreateClient("EvManagerApi");
     }
 
-    // GET: EstacionCarga
+    
     public async Task<IActionResult> Index()
     {
         var estaciones = await _httpClient.GetFromJsonAsync<List<EstacionCarga>>("EstacionCarga");
         return View(estaciones ?? new List<EstacionCarga>());
     }
 
-    // GET: EstacionCarga/Details/5
+   
     public async Task<IActionResult> Details(int id)
     {
         var estacion = await _httpClient.GetFromJsonAsync<EstacionCarga>($"EstacionCarga/{id}");
@@ -31,13 +31,13 @@ public class EstacionCargaController : Controller
         return View(estacion);
     }
 
-    // GET: EstacionCarga/Create
+    
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: EstacionCarga/Create
+    
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(EstacionCarga estacion)
@@ -54,7 +54,7 @@ public class EstacionCargaController : Controller
         return View(estacion);
     }
 
-    // GET: EstacionCarga/Edit/5
+   
     public async Task<IActionResult> Edit(int id)
     {
         var estacion = await _httpClient.GetFromJsonAsync<EstacionCarga>($"EstacionCarga/{id}");
@@ -65,7 +65,7 @@ public class EstacionCargaController : Controller
         return View(estacion);
     }
 
-    // POST: EstacionCarga/Edit/5
+    
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, EstacionCarga estacion)
@@ -87,7 +87,7 @@ public class EstacionCargaController : Controller
         return View(estacion);
     }
 
-    // GET: EstacionCarga/Delete/5
+    
     public async Task<IActionResult> Delete(int id)
     {
         var estacion = await _httpClient.GetFromJsonAsync<EstacionCarga>($"EstacionCarga/{id}");
@@ -98,7 +98,7 @@ public class EstacionCargaController : Controller
         return View(estacion);
     }
 
-    // POST: EstacionCarga/Delete/5
+   
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)

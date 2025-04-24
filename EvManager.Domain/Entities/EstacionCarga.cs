@@ -7,5 +7,6 @@ public class EstacionCarga : BaseEntity
     public string Nombre { get; set; }
     public string Ubicacion { get; set; }
     public int PuertosDisponibles { get; set; }
-    public decimal CapacidadPotencia { get; set; } // en kW
+    public decimal CapacidadPotencia { get; set; }
+
 }

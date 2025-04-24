@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EvManager.Application.Services;
 using EvManager.Domain.Entities;
-using EvManager.Api.Dtos;
+using EvManager.Domain.Dtos;
 
 namespace EvManager.Api.Controllers;
 

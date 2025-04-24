@@ -4,7 +4,7 @@ public class PlanRuta
 {
     public int Id { get; set; }
     public int VehiculoId { get; set; }
-    public Vehiculo Vehiculo { get; set; } = null!; // Relación de navegación
+    public Vehiculo Vehiculo { get; set; } = null!; 
     public string UbicacionInicio { get; set; } = string.Empty;
     public string UbicacionFin { get; set; } = string.Empty;
     public decimal DistanciaEstimada { get; set; }

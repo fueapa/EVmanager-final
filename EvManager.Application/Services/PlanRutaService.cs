@@ -1,6 +1,6 @@
 ﻿using EvManager.Domain.Entities;
 using EvManager.Domain.RepositoryInterfaces;
-using EvManager.Domain.Exceptions; // Añadido para PlanRutaException
+using EvManager.Domain.Exceptions; 
 
 namespace EvManager.Application.Services;
 

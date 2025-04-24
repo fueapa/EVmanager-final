@@ -13,7 +13,7 @@ public class EstadoBateriaController : Controller
         _httpClient = httpClientFactory.CreateClient("EvManagerApi");
     }
 
-    // GET: EstadoBateria
+    
     public async Task<IActionResult> Index()
     {
         try
@@ -28,7 +28,7 @@ public class EstadoBateriaController : Controller
         }
     }
 
-    // GET: EstadoBateria/Details/5
+    
     public async Task<IActionResult> Details(int id)
     {
         var estado = await _httpClient.GetFromJsonAsync<EstadoBateria>($"EstadoBateria/{id}");
@@ -39,13 +39,13 @@ public class EstadoBateriaController : Controller
         return View(estado);
     }
 
-    // GET: EstadoBateria/Create
+   
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: EstadoBateria/Create
+    
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(EstadoBateria estado)
@@ -62,7 +62,7 @@ public class EstadoBateriaController : Controller
         return View(estado);
     }
 
-    // GET: EstadoBateria/Edit/5
+    
     public async Task<IActionResult> Edit(int id)
     {
         var estado = await _httpClient.GetFromJsonAsync<EstadoBateria>($"EstadoBateria/{id}");
@@ -73,7 +73,7 @@ public class EstadoBateriaController : Controller
         return View(estado);
     }
 
-    // POST: EstadoBateria/Edit/5
+    
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, EstadoBateria estado)
@@ -95,7 +95,7 @@ public class EstadoBateriaController : Controller
         return View(estado);
     }
 
-    // GET: EstadoBateria/Delete/5
+    
     public async Task<IActionResult> Delete(int id, bool error = false)
     {
         var estado = await _httpClient.GetFromJsonAsync<EstadoBateria>($"EstadoBateria/{id}");
@@ -112,7 +112,7 @@ public class EstadoBateriaController : Controller
         return View(estado);
     }
 
-    // POST: EstadoBateria/Delete/5
+    
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)

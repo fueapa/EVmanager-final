@@ -13,14 +13,14 @@ public class VehiculoController : Controller
         _httpClient = httpClientFactory.CreateClient("EvManagerApi");
     }
 
-    // GET: Vehiculo
+   
     public async Task<IActionResult> Index()
     {
         var vehiculos = await _httpClient.GetFromJsonAsync<List<Vehiculo>>("Vehiculo");
         return View(vehiculos ?? new List<Vehiculo>());
     }
 
-    // GET: Vehiculo/Details/5
+    
     public async Task<IActionResult> Details(int id)
     {
         var vehiculo = await _httpClient.GetFromJsonAsync<Vehiculo>($"Vehiculo/{id}");
@@ -31,13 +31,13 @@ public class VehiculoController : Controller
         return View(vehiculo);
     }
 
-    // GET: Vehiculo/Create
+   
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: Vehiculo/Create
+    
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Vehiculo vehiculo)
@@ -54,7 +54,7 @@ public class VehiculoController : Controller
         return View(vehiculo);
     }
 
-    // GET: Vehiculo/Edit/5
+    
     public async Task<IActionResult> Edit(int id)
     {
         var vehiculo = await _httpClient.GetFromJsonAsync<Vehiculo>($"Vehiculo/{id}");
@@ -65,7 +65,7 @@ public class VehiculoController : Controller
         return View(vehiculo);
     }
 
-    // POST: Vehiculo/Edit/5
+    
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, Vehiculo vehiculo)
@@ -87,7 +87,7 @@ public class VehiculoController : Controller
         return View(vehiculo);
     }
 
-    // GET: Vehiculo/Delete/5
+   
     public async Task<IActionResult> Delete(int id)
     {
         var vehiculo = await _httpClient.GetFromJsonAsync<Vehiculo>($"Vehiculo/{id}");
@@ -98,7 +98,7 @@ public class VehiculoController : Controller
         return View(vehiculo);
     }
 
-    // POST: Vehiculo/Delete/5
+  
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)

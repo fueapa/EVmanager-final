@@ -1,6 +1,6 @@
 ﻿using EvManager.Domain.Entities;
 using EvManager.Domain.RepositoryInterfaces;
-using EvManager.Domain.Exceptions; // Añadido para EstacionCargaException
+using EvManager.Domain.Exceptions; 
 
 namespace EvManager.Application.Services;
 

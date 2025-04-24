@@ -1,113 +1,129 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Http.Json;
 using EvManager.Web.Models;
+using EvManager.Domain.Dtos;
 
-namespace EvManager.Web.Controllers;
-
-public class PlanRutaController : Controller
+namespace EvManager.Web.Controllers
 {
-    private readonly HttpClient _httpClient;
-
-    public PlanRutaController(IHttpClientFactory httpClientFactory)
+    public class PlanRutaController : Controller
     {
-        _httpClient = httpClientFactory.CreateClient("EvManagerApi");
-    }
+        private readonly HttpClient _httpClient;
 
-    // GET: PlanRuta
-    public async Task<IActionResult> Index()
-    {
-        var planes = await _httpClient.GetFromJsonAsync<List<PlanRuta>>("PlanRuta");
-        return View(planes ?? new List<PlanRuta>());
-    }
-
-    // GET: PlanRuta/Details/5
-    public async Task<IActionResult> Details(int id)
-    {
-        var plan = await _httpClient.GetFromJsonAsync<PlanRuta>($"PlanRuta/{id}");
-        if (plan == null)
+        public PlanRutaController(IHttpClientFactory httpClientFactory)
         {
-            return NotFound();
+            _httpClient = httpClientFactory.CreateClient("EvManagerApi");
         }
-        return View(plan);
-    }
 
-    // GET: PlanRuta/Create
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    // POST: PlanRuta/Create
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(PlanRuta plan)
-    {
-        if (ModelState.IsValid)
+       
+        public async Task<IActionResult> Index()
         {
-            var response = await _httpClient.PostAsJsonAsync("PlanRuta", plan);
+            var planes = await _httpClient.GetFromJsonAsync<List<PlanRuta>>("PlanRuta");
+            return View(planes ?? new List<PlanRuta>());
+        }
+
+        
+        public async Task<IActionResult> Details(int id)
+        {
+            var plan = await _httpClient.GetFromJsonAsync<PlanRuta>($"PlanRuta/{id}");
+            if (plan == null)
+            {
+                return NotFound();
+            }
+            return View(plan);
+        }
+
+       
+        public async Task<IActionResult> Create()
+        {
+            var vehiculos = await _httpClient.GetFromJsonAsync<List<VehiculoDto>>("Vehiculo");
+            var estaciones = await _httpClient.GetFromJsonAsync<List<EstacionCargaDto>>("EstacionCarga");
+
+            ViewBag.Vehiculos = vehiculos ?? new List<VehiculoDto>();
+            ViewBag.EstacionesCarga = estaciones ?? new List<EstacionCargaDto>();
+
+            return View();
+        }
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(PlanRuta plan)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _httpClient.PostAsJsonAsync("PlanRuta", plan);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError(string.Empty, "Error al crear el plan de ruta.");
+            }
+
+            
+            var vehiculos = await _httpClient.GetFromJsonAsync<List<VehiculoDto>>("Vehiculo");
+            var estaciones = await _httpClient.GetFromJsonAsync<List<EstacionCargaDto>>("EstacionCarga");
+
+            ViewBag.Vehiculos = vehiculos ?? new List<VehiculoDto>();
+            ViewBag.EstacionesCarga = estaciones ?? new List<EstacionCargaDto>();
+
+            return View(plan);
+        }
+
+      
+        public async Task<IActionResult> Edit(int id)
+        {
+            var plan = await _httpClient.GetFromJsonAsync<PlanRuta>($"PlanRuta/{id}");
+            if (plan == null)
+            {
+                return NotFound();
+            }
+            return View(plan);
+        }
+
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, PlanRuta plan)
+        {
+            if (id != plan.Id)
+            {
+                return BadRequest();
+            }
+
+            if (ModelState.IsValid)
+            {
+                var response = await _httpClient.PutAsJsonAsync($"PlanRuta/{id}", plan);
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError(string.Empty, "Error al actualizar el plan de ruta.");
+            }
+            return View(plan);
+        }
+
+        
+        public async Task<IActionResult> Delete(int id)
+        {
+            var plan = await _httpClient.GetFromJsonAsync<PlanRuta>($"PlanRuta/{id}");
+            if (plan == null)
+            {
+                return NotFound();
+            }
+            return View(plan);
+        }
+
+        
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"PlanRuta/{id}");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction(nameof(Index));
             }
-            ModelState.AddModelError(string.Empty, "Error al crear el plan de ruta.");
+            return RedirectToAction(nameof(Delete), new { id, error = true });
         }
-        return View(plan);
-    }
-
-    // GET: PlanRuta/Edit/5
-    public async Task<IActionResult> Edit(int id)
-    {
-        var plan = await _httpClient.GetFromJsonAsync<PlanRuta>($"PlanRuta/{id}");
-        if (plan == null)
-        {
-            return NotFound();
-        }
-        return View(plan);
-    }
-
-    // POST: PlanRuta/Edit/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, PlanRuta plan)
-    {
-        if (id != plan.Id)
-        {
-            return BadRequest();
-        }
-
-        if (ModelState.IsValid)
-        {
-            var response = await _httpClient.PutAsJsonAsync($"PlanRuta/{id}", plan);
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            ModelState.AddModelError(string.Empty, "Error al actualizar el plan de ruta.");
-        }
-        return View(plan);
-    }
-
-    // GET: PlanRuta/Delete/5
-    public async Task<IActionResult> Delete(int id)
-    {
-        var plan = await _httpClient.GetFromJsonAsync<PlanRuta>($"PlanRuta/{id}");
-        if (plan == null)
-        {
-            return NotFound();
-        }
-        return View(plan);
-    }
-
-    // POST: PlanRuta/Delete/5
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
-        var response = await _httpClient.DeleteAsync($"PlanRuta/{id}");
-        if (response.IsSuccessStatusCode)
-        {
-            return RedirectToAction(nameof(Index));
-        }
-        return RedirectToAction(nameof(Delete), new { id, error = true });
     }
 }

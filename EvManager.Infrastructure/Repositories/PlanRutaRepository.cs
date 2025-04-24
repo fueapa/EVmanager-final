@@ -2,7 +2,7 @@
 using EvManager.Domain.Entities;
 using EvManager.Domain.RepositoryInterfaces;
 using EvManager.Infrastructure.Contexts;
-using EvManager.Domain.Exceptions; // Añadido para PlanRutaException
+using EvManager.Domain.Exceptions; 
 
 namespace EvManager.Infrastructure.Repositories;
 

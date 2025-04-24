@@ -10,7 +10,7 @@ public class EvManagerContext : DbContext
     public DbSet<EstacionCarga> EstacionesCarga { get; set; }
     public DbSet<EstadoBateria> EstadosBateria { get; set; }
     public DbSet<PlanRuta> PlanesRuta { get; set; }
-    public DbSet<Vehiculo> Vehiculos { get; set; } // Nueva entidad
+    public DbSet<Vehiculo> Vehiculos { get; set; } 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

@@ -1,4 +1,4 @@
-﻿namespace EvManager.Api.Dtos;
+﻿namespace EvManager.Domain.Dtos;
 
 public class EstacionCargaDto
 {

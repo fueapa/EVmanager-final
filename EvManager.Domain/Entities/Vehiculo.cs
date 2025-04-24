@@ -6,7 +6,7 @@ public class Vehiculo
     public string Marca { get; set; } = string.Empty;
     public string Modelo { get; set; } = string.Empty;
     public string Matricula { get; set; } = string.Empty;
-    public int CapacidadBateria { get; set; } // En kWh
+    public int CapacidadBateria { get; set; } 
     public bool IsActive { get; set; } = true;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
